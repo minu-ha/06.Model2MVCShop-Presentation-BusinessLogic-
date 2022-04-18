@@ -103,22 +103,22 @@ public class ProductController {
 	
 	@PostMapping("/updateProduct")
 	public String updateProduct(  @ModelAttribute Product product,
-			                      HttpSession session,
 								  Model model ) throws Exception{
 
 		System.out.println("/updateProduct post");
 		//Business Logic
 		productService.updateProduct(product);
+
+		System.out.println("9");
 		
-		Integer sessionId=((Product)session.getAttribute("product")).getProdNo();
-		if(sessionId.equals(product.getProdNo())){
-			session.setAttribute("product", product);
-		}
 		
-		return "redirect:/product/getProduct?prodNo="+product.getProdNo();
+		
+		System.out.println("11");
+		
+		return "redirect:/product/getProduct?prodNo="+product.getProdNo()+"&menu=manage";
 	}
 	
-	@GetMapping("/listProduct")
+	@RequestMapping("/listProduct")
 	public String listProduct(@ModelAttribute Search search,
 							   HttpServletRequest request,
 							   Model model) throws Exception{
