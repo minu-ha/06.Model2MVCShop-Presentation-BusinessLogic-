@@ -40,7 +40,15 @@
 	 
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getProduct"	parameterType="int"	resultMap="productSelectMap">
-		SELECT * FROM product WHERE prod_no = #{value}
+		SELECT prod_no
+			 , prod_name
+			 , image_file
+			 , prod_detail
+			 , manufacture_day
+			 , price
+			 , reg_date	
+		  FROM product 
+		 WHERE prod_no = #{value}
 	 </select>
 	 
 	 
