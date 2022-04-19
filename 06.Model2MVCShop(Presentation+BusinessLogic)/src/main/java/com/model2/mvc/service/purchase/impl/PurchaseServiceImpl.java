@@ -14,11 +14,10 @@ import com.model2.mvc.service.domain.Purchase;
 import com.model2.mvc.service.purchase.PurchaseDao;
 import com.model2.mvc.service.purchase.PurchaseService;
 
-@Service("purchaseDaoImpl")
+@Service
 public class PurchaseServiceImpl implements PurchaseService {
 
 	@Autowired
-	@Qualifier("purcahseDaoImpl")
 	private PurchaseDao purchaseDao;
 	
 	/**

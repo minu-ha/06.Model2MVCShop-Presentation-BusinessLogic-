@@ -1,22 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
-    
-    
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=EUC-KR" %>
 
-
-
-
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<title>Insert title here</title>
+<title>구매상세조회</title>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
@@ -29,7 +20,7 @@
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="93%" class="ct_ttl01">상품상세조회</td>
+					<td width="93%" class="ct_ttl01">구매상세조회</td>
 					<td width="20%" align="right">&nbsp;</td>
 				</tr>
 			</table>
@@ -46,13 +37,13 @@
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			상품번호 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			물품번호 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105">10000</td>
+					<td width="105">${purchase.tranNo}</td>
 				</tr>
 			</table>
 		</td>
@@ -62,60 +53,75 @@
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			상품명 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			구매자아이디 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">vaio vgn eeeFS70B</td>
+		<td class="ct_write01">${purchase.buyer}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
+
 	<tr>
 		<td width="104" class="ct_write">
-			상품이미지 <img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			구매방법 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<img src = "/images/uploadFiles/../../images/empty.GIF"/>
-		</td>
+		<td class="ct_write01">${purchase.paymentOption}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
-		<td width="104" class="ct_write">
-			상품상세정보 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
+		<td width="104" class="ct_write">구매자이름</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">소니 바이오 노트북 신동품</td>
+		<td class="ct_write01">${purchase.receiverName}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
-		<td width="104" class="ct_write">제조일자</td>
+		<td width="104" class="ct_write">구매자연락처</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">20120514</td>
+		<td class="ct_write01">${purchase.receiverPhone}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
-		<td width="104" class="ct_write">가격</td>
+		<td width="104" class="ct_write">구매자주소</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">20</td>
+		<td class="ct_write01">${purchase.divyAddr}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
-	<tr>
-		<td width="104" class="ct_write">등록일자</td>
+		<tr>
+		<td width="104" class="ct_write">구매요청사항</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">2012-12-14</td>
+		<td class="ct_write01">${purchase.divyRequest}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
+		<tr>
+		<td width="104" class="ct_write">배송희망일</td>
+		<td bgcolor="D6D6D6" width="1"></td>
+		<td class="ct_write01">${purchase.divyDate}</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
+	</tr>
+	
+		<tr>
+		<td width="104" class="ct_write">주문일</td>
+		<td bgcolor="D6D6D6" width="1"></td>
+		<td class="ct_write01">${purchase.orderDate}</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
+	</tr>
+	
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
@@ -125,16 +131,19 @@
 
 		<table border="0" cellspacing="0" cellpadding="0">
 			<tr>
-		
-				<td width="17" height="23">
-					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
-				</td>
-				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
-					<a href="/addPurchaseView.do?prod_no=10000">구매</a>
-				</td>
-				<td width="14" height="23">
-					<img src="/images/ct_btnbg03.gif" width="14" height="23">
-				</td>
+				
+					<td width="17" height="23">
+						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
+					</td>
+					
+						<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
+							<a href="/purchase/updatePurchase">수정</a>
+						</td>
+								
+					<td width="14" height="23">
+						<img src="/images/ct_btnbg03.gif" width="14" height="23">
+					</td>
+				 
 				<td width="30"></td>
 		
 				<td width="17" height="23">
@@ -142,7 +151,6 @@
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
 					<a href="javascript:history.go(-1)">이전</a>
-				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23">
 				</td>

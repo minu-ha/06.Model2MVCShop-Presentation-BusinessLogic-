@@ -15,6 +15,8 @@
 		<result property="price" 			column="price" 			 jdbcType="NUMERIC" />
 		<result property="fileName" 		column="image_file" 	 jdbcType="VARCHAR" />
 		<result property="regDate" 			column="reg_date" 		 jdbcType="DATE" />
+		<result property="quantity" 		column="quantity" 		 jdbcType="NUMERIC" />
+		
 		
 	</resultMap>
 	
@@ -31,6 +33,7 @@
 	 								 , #{price} 
 	 								 , #{fileName} 
 	 								 , SYSDATE
+	 								 , #{quantity}
 	 								 )
 	 </insert>
 	 
@@ -47,6 +50,7 @@
 			 , manufacture_day
 			 , price
 			 , reg_date	
+			 , quantity
 		  FROM product 
 		 WHERE prod_no = #{value}
 	 </select>
@@ -63,7 +67,8 @@
 			prod_detail	        = #{prodDetail},
 			manufacture_day 	= #{manuDate} ,
 			price				= #{price},
-			image_file			= #{fileName}
+			image_file			= #{fileName},
+			quantity            = #{quantity}
 	   	</set>
 	   	WHERE prod_no = #{prodNo}
 	 </update>
@@ -80,6 +85,7 @@
 	  			  FROM	( SELECT prod_no
 	  			  			   , prod_name 
 	  		                   , price 
+	  		                   , quantity
      	                       , reg_date 
   			                FROM product
 								<if test="searchCondition != null">
