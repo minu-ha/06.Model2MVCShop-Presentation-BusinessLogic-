@@ -15,6 +15,8 @@
 		<result property="price" 			column="price" 			 jdbcType="NUMERIC" />
 		<result property="fileName" 		column="image_file" 	 jdbcType="VARCHAR" />
 		<result property="regDate" 			column="reg_date" 		 jdbcType="DATE" />
+		<result property="quantity" 		column="quantity" 		 jdbcType="NUMERIC" />
+		
 		
 	</resultMap>
 	
@@ -31,7 +33,8 @@
 	 								 , #{price} 
 	 								 , #{fileName} 
 	 								 , SYSDATE
-	 								  )
+	 								 , #{quantity}
+	 								 )
 	 </insert>
 	 
 	 
@@ -40,7 +43,16 @@
 	 
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getProduct"	parameterType="int"	resultMap="productSelectMap">
-		SELECT FROM product WHERE prod_no = #{value}
+		SELECT prod_no
+			 , prod_name
+			 , image_file
+			 , prod_detail
+			 , manufacture_day
+			 , price
+			 , reg_date	
+			 , quantity
+		  FROM product 
+		 WHERE prod_no = #{value}
 	 </select>
 	 
 	 
@@ -55,9 +67,10 @@
 			prod_detail	        = #{prodDetail},
 			manufacture_day 	= #{manuDate} ,
 			price				= #{price},
-			image_file			= #{fileName}
+			image_file			= #{fileName},
+			quantity            = #{quantity}
 	   	</set>
-	   	WHERE pord_no = #{prodNo}
+	   	WHERE prod_no = #{prodNo}
 	 </update>
 		 
 		 
@@ -67,20 +80,26 @@
 	<!-- SQL : SELECT LIST -->
 	<select  id="getProductList"  parameterType="search"	resultMap="productSelectMap">
 	  	SELECT *
-	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT prod_no, prod_name , price , reg_date FROM product
-											<if test="searchCondition != null">
-												<where>
-													<if test="searchCondition == 0 and searchKeyword !='' ">
-										 				prod_no = #{searchKeyword}
-													</if>
-													<if test="searchCondition == 1 and searchKeyword !='' ">
-										 				prod_name = #{searchKeyword}
-													</if>
-												</where>
-											</if>
-											ORDER BY prod_no ) inner_table
-						WHERE ROWNUM &lt;= #{endRowNum} )
+	  	FROM (	SELECT inner_table.* 
+	  	             , ROWNUM AS row_seq
+	  			  FROM	( SELECT prod_no
+	  			  			   , prod_name 
+	  		                   , price 
+	  		                   , quantity
+     	                       , reg_date 
+  			                FROM product
+								<if test="searchCondition != null">
+									<where>
+										<if test="searchCondition == 0 and searchKeyword !='' ">
+							 				prod_no = #{searchKeyword}
+										</if>
+										<if test="searchCondition == 1 and searchKeyword !='' ">
+							 				prod_name = #{searchKeyword}
+										</if>
+									</where>
+								</if>
+							ORDER BY prod_no ) inner_table
+				WHERE ROWNUM &lt;= #{endRowNum} )
 		WHERE row_seq BETWEEN #{startRowNum} AND #{endRowNum} 
 	 </select>
 	 	<!--  위 두번째 subQuery 의  
@@ -100,18 +119,22 @@
 	
 	<!-- SQL : SELECT ROW Count -->	 
 	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
-	  	SELECT COUNT(*)
-	  	FROM(	SELECT prod_no, prod_name , price , reg_date , FROM product
-						<if test="searchCondition != null">
-							<where>
-								<if test="searchCondition == 0 and searchKeyword !='' ">
-						 			prod_no = #{searchKeyword}
-								</if>
-								<if test="searchCondition == 1 and searchKeyword !='' ">
-						 		prod_name = #{searchKeyword}
-								</if>
-							</where>
-						</if> ) countTable						
+	  	SELECT COUNT(*) 
+	  	  FROM (SELECT prod_no
+	  			  	 , prod_name 
+	  		  		 , price 
+	  		  		 , reg_date 
+			      FROM product
+			 		<if test="searchCondition != null">
+				  		<where>
+							<if test="searchCondition == 0 and searchKeyword !='' ">
+					 			prod_no = #{searchKeyword}
+							</if>
+							<if test="searchCondition == 1 and searchKeyword !='' ">
+					 			prod_name = #{searchKeyword}
+							</if>
+						</where>
+					</if> ) countTable						
 	 </select>
 	 
 </mapper>

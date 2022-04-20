@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	
 	// 검색 / page 두가지 경우 모두 Form 전송을 위해 JavaScript 이용
-	function fncGeProductList(currentPage){
+	function fncGetPageList(currentPage){
 		document.getElementById("currentPage").value = currentPage;
 		document.detailForm.submit();
 	}
@@ -23,7 +23,7 @@
 
 <div style="width:98%; margin-left:10px;">
 
-<form name="detailForm" action="/listProduct.do?menu=${ param.menu }" method="post">
+<form name="detailForm" action="/product/listProduct?menu=${ menu }" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -34,7 +34,8 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="93%" class="ct_ttl01">
-						${ ! empty menu && menu == "manage" ? "상품 관리" : "상품 목록조회" }					
+						<c:if test = "${param.menu eq 'manage'}">상품관리</c:if>
+						<c:if test = "${param.menu eq 'search'}">상품목록조회</c:if>						
 					</td>
 				</tr>
 			</table>
@@ -102,9 +103,13 @@
 			<td align="center">${ i }</td>
 			<td></td>
 			<td align="left">
-				<a href="${ menu == 'manage' ? '/updateProductView.do' : '/getProduct.do'}?prodNo=${  product.prodNo }&menu=${ menu }">
-					${ product.prodName }
-				</a>
+	           <c:if test="${menu eq 'manage'}">
+					<a href="/product/updateProduct?prodNo=${product.prodNo}&menu=${menu}">${product.prodName}</a>
+				</c:if>
+				
+				<c:if test="${menu eq 'search'}">
+				<a href="/product/getProduct?prodNo=${product.prodNo}&menu=${menu}">${product.prodName}</a>
+				</c:if>			
 			</td>
 			<td></td>
 			<td align="left">${ product.price }</td>

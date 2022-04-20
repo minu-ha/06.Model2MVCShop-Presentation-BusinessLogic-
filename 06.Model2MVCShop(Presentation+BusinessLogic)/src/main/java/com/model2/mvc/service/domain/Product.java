@@ -12,8 +12,17 @@ public class Product {
 	private String prodName;
 	private int prodNo;
 	private Date regDate;
+	private int quantity;
 	private String proTranCode;
 	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public Product(){
 	}
 	

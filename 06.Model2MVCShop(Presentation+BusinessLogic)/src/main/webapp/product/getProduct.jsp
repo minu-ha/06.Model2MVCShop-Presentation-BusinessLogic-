@@ -7,6 +7,13 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
+<script type="text/javascript">
+function fncAddPurchase(){
+	document.detailForm.action='/purchase/updatePurchase';
+	document.detailForm.submit();
+
+</script>
+
 <title>상품상세조회</title>
 </head>
 
@@ -43,7 +50,7 @@
 		<td class="ct_write01">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105">${ product.prodNo }</td>
+					<td width="105">${product.prodNo}</td>
 				</tr>
 			</table>
 		</td>
@@ -56,7 +63,7 @@
 			상품명 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.prodName }</td>
+		<td class="ct_write01">${product.prodName}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -67,7 +74,7 @@
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<img src = "/images/uploadFiles/${ product.fileName }"/>
+			<img src = "/images/uploadFiles/${product.fileName}"/>
 		</td>
 	</tr>
 	<tr>
@@ -78,7 +85,7 @@
 			상품상세정보 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.prodDetail }</td>
+		<td class="ct_write01">${product.prodDetail}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -86,7 +93,7 @@
 	<tr>
 		<td width="104" class="ct_write">제조일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.manuDate }</td>
+		<td class="ct_write01">${product.manuDate}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -94,7 +101,7 @@
 	<tr>
 		<td width="104" class="ct_write">가격</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.price }</td>
+		<td class="ct_write01">${product.price}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -102,7 +109,7 @@
 	<tr>
 		<td width="104" class="ct_write">등록일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.regDate }</td>
+		<td class="ct_write01">${product.regDate}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
@@ -116,20 +123,20 @@
 
 		<table border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<!-- <c:if test="${ product.proTranCode == '001'  }"> -->
+				<c:if test="${ product.quantity > 0  }">
 					<td width="17" height="23">
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					
 						<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
-							<a href="/addPurchaseView.do?prodNo=${ product.prodNo  }">구매</a>
+							<a href="javascript:fncAddPurchase();">구매</a>
 						</td>
 								
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23">
 					</td>
-				<!-- </c:if> -->
-				
+				 </c:if> 
+				 
 				<td width="30"></td>
 		
 				<td width="17" height="23">
@@ -137,7 +144,6 @@
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
 					<a href="javascript:history.go(-1)">이전</a>
-				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23">
 				</td>

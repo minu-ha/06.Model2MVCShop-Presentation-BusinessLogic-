@@ -12,8 +12,8 @@
 </script>
 
 <script type="text/javascript">
-<!-- 
-function fncAddProduct(){
+
+function fncUpdateProduct(){
 	//Form 유효성 검증
  	var name = document.detailForm.prodName.value;
 	var detail = document.detailForm.prodDetail.value;
@@ -37,10 +37,10 @@ function fncAddProduct(){
 		return;
 	}
 		
-	document.detailForm.action='/updateProduct.do';
+	document.detailForm.action='/product/updateProduct';
 	document.detailForm.submit();
 }
--->
+
 </script>
 </head>
 
@@ -122,12 +122,12 @@ function fncAddProduct(){
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			가격 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			가격 <img	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" name="price" value="${ product.price }"
-						class="ct_input_g" style="width: 100px; height: 19px" maxLength="50"/>&nbsp;원
+			<input type="text" name="price"  value="${ product.price }" class="ct_input_g" 
+						style="width: 100px; height: 19px" maxLength="10"	minLength="6">
 		</td>
 	</tr>
 	<tr>
@@ -145,6 +145,21 @@ function fncAddProduct(){
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
+	
+	<tr>
+		<td width="104" class="ct_write">
+			수량 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+		</td>
+		<td bgcolor="D6D6D6" width="1"></td>
+		<td class="ct_write01">
+			<input type="text" name="quantity" value="${ product.quantity }"
+						class="ct_input_g" style="width: 100px; height: 19px" maxLength="50"/>&nbsp;원
+		</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
+	</tr>
+	</tr>
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
@@ -157,7 +172,7 @@ function fncAddProduct(){
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01"	style="padding-top: 3px;">
-						<a href="javascript:fncAddProduct();">수정</a>
+						<a href="javascript:fncUpdateProduct();">수정</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
