@@ -2,9 +2,12 @@ package com.model2.mvc.web.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,16 +32,8 @@ public class UserRestController {
 		System.out.println(this.getClass());
 	}
 	
-	@RequestMapping( value="json/getUser/{userId}", method=RequestMethod.GET )
-	public User getUser( @PathVariable String userId ) throws Exception{
-		
-		System.out.println("/user/json/getUser : GET");
-		
-		//Business Logic
-		return userService.getUser(userId);
-	}
-
-	@RequestMapping( value="json/login", method=RequestMethod.POST )
+	//@RequestMapping( value="/json/login", method=RequestMethod.POST )
+	@PostMapping("/json/login")
 	public User login(	@RequestBody User user,
 									HttpSession session ) throws Exception{
 	
@@ -54,13 +49,34 @@ public class UserRestController {
 		return dbUser;
 	}
 	
+	//@RequestMapping( value="json/getUser/{userId}", method=RequestMethod.GET )
+	@GetMapping("/json/getUser/{userId}")
+	public User getUser( @PathVariable String userId ) throws Exception{
+		
+		System.out.println("/user/json/getUser : GET");
+		
+		//Business Logic
+		return userService.getUser(userId);
+	}
+	
+	@PostMapping("/json/updateUser")
+	public User updateUser(@RequestBody User user, HttpSession session) throws Exception{
+		
+		
+		String sessionId=((User)session.getAttribute("user")).getUserId();
+		if(sessionId.equals(user.getUserId())){
+			session.setAttribute("user", user);
+		}
+		
+		userService.updateUser(user);
+		
+		return null;
+	}
+	
+	
+	
 	
 }
-
-
-
-
-
 
 
 
