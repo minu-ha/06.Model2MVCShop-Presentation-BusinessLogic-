@@ -9,9 +9,9 @@
 
 <script type="text/javascript">
 function fncAddPurchase(){
-	document.detailForm.action='/purchase/updatePurchase';
+	document.detailForm.action='/purchase/addPurchase';
 	document.detailForm.submit();
-
+}
 </script>
 
 <title>상품상세조회</title>

@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<title>addpurchaseview here</title>
+<title>addpurchase here</title>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">

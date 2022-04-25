@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 
-/* 
+
 function fncAddPurchase(){
 	//Form 유효성 검증
  	var name = document.detailForm.prodName.value;
@@ -39,7 +39,6 @@ function fncAddPurchase(){
 	document.detailForm.action='/purchase/addPurchase';
 	document.detailForm.submit();
 } 
-*/
 
 function resetData(){
 	document.detailForm.reset();
@@ -77,14 +76,13 @@ function resetData(){
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			상품명 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			상품번호 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="105">${ product.prodName }</td>
-					<td></td>
+					<td width="105">${product.prodNo}</td>
 				</tr>
 			</table>
 		</td>
@@ -92,64 +90,46 @@ function resetData(){
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
-
 	<tr>
 		<td width="104" class="ct_write">
-			상품상세정보 <img  src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			상품명 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.prodDetail }</td>
-	</tr>
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-
-	<tr>
-		<td width="104" class="ct_write">
-			제조일자<img	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.manuDate }</td>
+		<td class="ct_write01">${product.prodName}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			가격<img 	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			상품상세정보 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${  product.price }</td>
-	</tr>
-
-	<tr>
-		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-	</tr>
-	
-		<tr>
-		<td width="104" class="ct_write">
-			수량<img	src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
-		</td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">${ product.quantity }</td>
+		<td class="ct_write01">${product.prodDetail}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
-	
 	<tr>
-		<td width="104" class="ct_write">상품이미지</td>
+		<td width="104" class="ct_write">제조일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<!-- 테이블 시작 -->
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td height="26">
-						<img src="/images/uploadFiles/../../images/${  product.fileName }"/>
-					</td>
-				</tr>
-			</table>
-		</td>
+		<td class="ct_write01">${product.manuDate}</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
+	</tr>
+	<tr>
+		<td width="104" class="ct_write">가격</td>
+		<td bgcolor="D6D6D6" width="1"></td>
+		<td class="ct_write01">${product.price}</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
+	</tr>
+	<tr>
+		<td width="104" class="ct_write">등록일자</td>
+		<td bgcolor="D6D6D6" width="1"></td>
+		<td class="ct_write01">${product.regDate}</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
