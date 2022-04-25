@@ -51,8 +51,9 @@ public class UserServiceImpl implements UserService{
 		return map;
 	}
 
-	public void updateUser(User user) throws Exception {
-		userDao.updateUser(user);
+	public int updateUser(User user) throws Exception {
+		int result = userDao.updateUser(user);
+		return result;
 	}
 
 	public boolean checkDuplication(String userId) throws Exception {

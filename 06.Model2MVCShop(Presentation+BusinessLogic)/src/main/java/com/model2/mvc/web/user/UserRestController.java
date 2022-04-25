@@ -59,7 +59,7 @@ public class UserRestController {
 		return userService.getUser(userId);
 	}
 	
-	@PostMapping("/json/updateUser")
+	@PostMapping("/json/updateUser/{userId}")
 	public User updateUser(@RequestBody User user, HttpSession session) throws Exception{
 		
 		
@@ -68,10 +68,13 @@ public class UserRestController {
 			session.setAttribute("user", user);
 		}
 		
-		userService.updateUser(user);
+		int result = userService.updateUser(user);
 		
-		return null;
+		return user;
 	}
+	
+	
+	
 	
 	
 	

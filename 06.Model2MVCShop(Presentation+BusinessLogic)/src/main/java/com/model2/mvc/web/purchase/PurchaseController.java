@@ -54,16 +54,6 @@ public class PurchaseController {
 	int pageSize;
 	
 	
-	@GetMapping("/addPurchase")
-	public String addPurchase() throws Exception {
-
-		System.out.println("/addPurchase get");
-		
-		
-		return "forward:/purchase/addPurchaseView.jsp";
-	}
-	
-	
 	@PostMapping("/addPurchase")
 	public String addPurchase( @ModelAttribute Purchase purchase ) throws Exception {
 
@@ -71,7 +61,7 @@ public class PurchaseController {
 		//Business Logic
 		purchaseService.addPurchase(purchase);
 		
-		return "forward:/purchase/getPurchase.jsp";
+		return "forward:/purchase/addPurchaseView.jsp";
 	}
 	
 	@GetMapping("/getPurchase")

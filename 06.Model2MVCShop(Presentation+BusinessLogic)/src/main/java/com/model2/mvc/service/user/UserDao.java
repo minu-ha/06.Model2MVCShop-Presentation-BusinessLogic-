@@ -19,7 +19,7 @@ public interface UserDao {
 	public List<User> getUserList(Search search) throws Exception ;
 
 	// UPDATE
-	public void updateUser(User user) throws Exception ;
+	public int updateUser(User user) throws Exception ;
 	
 	// 게시판 Page 처리를 위한 전체Row(totalCount)  return
 	public int getTotalCount(Search search) throws Exception ;
