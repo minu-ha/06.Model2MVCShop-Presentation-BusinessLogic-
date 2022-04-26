@@ -6,43 +6,73 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<script type="text/javascript" src="../javascript/calendar.js">
-</script>
-
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 
-
-function fncAddPurchase(){
-	//Form 유효성 검증
- 	var name = document.detailForm.prodName.value;
-	var detail = document.detailForm.prodDetail.value;
-	var manuDate = document.detailForm.manuDate.value;
-	var price = document.detailForm.price.value;
-
-	if(name == null || name.length<1){
-		alert("상품명은 반드시 입력하여야 합니다.");
-		return;
-	}
-	if(detail == null || detail.length<1){
-		alert("상품상세정보는 반드시 입력하여야 합니다.");
-		return;
-	}
-	if(manuDate == null || manuDate.length<1){
-		alert("제조일자는 반드시 입력하셔야 합니다.");
-		return;
-	}
-	if(price == null || price.length<1){
-		alert("가격은 반드시 입력하셔야 합니다.");
-		return;
-	}
-
-	document.detailForm.action='/purchase/addPurchase';
-	document.detailForm.submit();
-} 
-
-function resetData(){
-	document.detailForm.reset();
+function fncGetUserList(currentPage) {
+	$("#currentPage").val(currentPage)
+	$("form").attr("method" , "POST").attr("action" , "/user/listUser").submit();
 }
+
+$(function() {
+	 
+	//==> 검색 Event 연결처리부분
+	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+	//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함. 
+	 $( "td.ct_btn01:contains('취소')" ).on("click" , function() {
+		//Debug..
+			history.go(-1);
+	});
+	
+	
+	//==> userId LINK Event 연결처리
+	//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+	//==> 3 과 1 방법 조합 : $(".className tagName:filter함수") 사용함.
+	
+	
+	
+	$( "#request" ).on("click" , function() {
+console.log("ddd");
+		//json 형식으로 데이터 set
+		var params ={
+					  
+					  buyer : $("#buyer").val()
+					, paymentOption : $("#paymentOption").val()
+					, receiverName : $("#receiverName").val()
+					, receiverPhone : $("#receiverPhone").val()
+					, divyAdder : $("#divyAdder").val()
+					, divyRequest : $("#divyRequest").val()
+					, prodNo : $("#prodNo").val()
+					, divyDate : $("#divyDate").val()
+				
+					}
+			
+			$.ajax({ 
+				  		url : "/purchase/json/addPurchase"
+				  	  , method : "POST"
+				  	  , dataType : "json"
+					  , headers : {
+									 "Accept" : "application/json"
+								   , "Content-Type" : "application/json"
+								  }
+				  	  , data : JSON.stringify( params ) 
+					  , success : function(JSONData , status) {
+			
+						  
+						}
+				});
+				////////////////////////////////////////////////////////////////////////////////////////////
+			
+	});
+	
+	//==> userId LINK Event End User 에게 보일수 있도록 
+	$( ".ct_list_pop td:nth-child(3)" ).css("color" , "red");
+	$("h7").css("color" , "red");
+	
+	//==> 아래와 같이 정의한 이유는 ??
+	$(".ct_list_pop:nth-child(4n+6)" ).css("background-color" , "whitesmoke");
+});	
+
 
 </script>
 </head>
@@ -288,7 +318,7 @@ function resetData(){
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01"  style="padding-top: 3px;">
-					<a href="/purchase/getPurchase?tranNo=${pruchase.tranNo }">구매확인</a>
+				<input type="button" id="request" value="구매확인"/>
 				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
@@ -298,7 +328,7 @@ function resetData(){
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01"	 style="padding-top: 3px;">
-					<a href="javascript:resetData();">취소</a>
+				취소
 				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>

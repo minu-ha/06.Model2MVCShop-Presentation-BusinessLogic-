@@ -7,19 +7,36 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<script type="text/javascript">
-function fncAddPurchase(){
-	document.detailForm.action='/purchase/addPurchase';
-	document.detailForm.submit();
-}
-</script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		
+		//==> 추가된부분 : "수정" "확인"  Event 연결 및 처리
+		 $(function() {
+			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			//==> 1 과 3 방법 조합 : $("tagName.className:filter함수") 사용함.	
+			 $( "td.ct_btn01:contains('구매')" ).on("click" , function() {
+				//Debug..
+				//alert(  $( "td.ct_btn01:contains('확인')" ).html() );
+				//$("form").attr("method" , "POST").attr("action" , "/purchsae/addPurchase").submit();	
+				self.location = "/purchase/addPurchase?prodNo=${product.prodNo}"
+				
+			});
+			
+			 $( "td.ct_btn01:contains('이전')" ).on("click" , function() {
+					//Debug..
+					//alert(  $( "td.ct_btn01:contains('수정')" ).html() );
+					
+						history.go(-1);	
+			 });
+		});
+		
+	</script>
 
 <title>상품상세조회</title>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="detailForm" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -129,7 +146,7 @@ function fncAddPurchase(){
 					</td>
 					
 						<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top: 3px;">
-							<a href="javascript:fncAddPurchase();">구매</a>
+							구매
 						</td>
 								
 					<td width="14" height="23">
