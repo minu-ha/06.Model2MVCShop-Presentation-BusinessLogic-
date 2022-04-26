@@ -38,6 +38,11 @@ public class PurchaseController {
 	@Qualifier("purchaseServiceImpl")
 	private PurchaseService purchaseService;
 	
+	@Autowired
+	@Qualifier("productServiceImpl")
+	private ProductService productService;
+	
+	
 	
 	public PurchaseController() {
 		System.out.println(this.getClass());
@@ -54,14 +59,33 @@ public class PurchaseController {
 	int pageSize;
 	
 	
-	@PostMapping("/addPurchase")
-	public String addPurchase( @ModelAttribute Purchase purchase ) throws Exception {
+
+	
+	@GetMapping("/addPurchase")
+	public String addPurchase( @RequestParam int prodNo, 
+								HttpSession session,
+								Model model) throws Exception {
 
 		System.out.println("/addPurchase post");
 		//Business Logic
+		
+		Purchase purchase = new Purchase();
+		
+		Product product = productService.getProduct(prodNo);
+		purchase.setPurchaseProd(product);
+		purchase.setBuyer((User)session.getAttribute("user"));
+		
+		model.addAttribute(product);
+		
 		purchaseService.addPurchase(purchase);
 		
 		return "forward:/purchase/addPurchaseView.jsp";
+	}
+	
+	@PostMapping("/addPurchase")
+	public String addPurchase(@ModelAttribute Purchase purchase) {
+		
+		return null;
 	}
 	
 	@GetMapping("/getPurchase")
