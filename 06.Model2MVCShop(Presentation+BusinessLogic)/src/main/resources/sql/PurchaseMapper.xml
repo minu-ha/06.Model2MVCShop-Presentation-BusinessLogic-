@@ -79,7 +79,7 @@
   		     , demailaddr
   		     , dlvy_request
   		     , dlvy_date
-  		     , order_date
+  		     , order_data
   		     , tran_status_code
   		     , tran_no
 		 FROM  transaction
@@ -114,7 +114,7 @@
 		t.DLVY_ADDR dlvyAddr,
 		t.DLVY_REQUEST dlvyRequest,
 		t.TRAN_STATUS_CODE tranCode,
-		t.ORDER_DATE orderDate,
+		t.ORDER_DATA orderData,
 		t.DLVY_DATE dlvyDate,
 		
 		p.PROD_NO prod_no,
@@ -146,7 +146,7 @@
   		  FROM ( SELECT inner_table.*, ROWNUM AS row_seq
   				   FROM ( SELECT t.tran_no
   				               , p.prod_no
-  				               , t.order_date
+  				               , t.order_data
   				               , t.tran_status_code 
 							FROM transaction t, product p, users u 
 						   WHERE t.prod_no = p.prod_no 

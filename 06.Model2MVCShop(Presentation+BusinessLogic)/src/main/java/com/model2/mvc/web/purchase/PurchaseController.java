@@ -102,7 +102,7 @@ public class PurchaseController {
 		//connect product
 		model.addAttribute("purchase", purchase);
 		
-		System.out.println(purchase.getOrderDate());
+		System.out.println(purchase.getOrderData());
 		
 		return "forward:/purchase/updatePurchaseView.jsp";
 	}
