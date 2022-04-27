@@ -63,47 +63,34 @@ public class PurchaseController {
 	
 	@GetMapping("/addPurchase")
 	public String addPurchase( @RequestParam int prodNo, 
-								HttpSession session,
 								Model model) throws Exception {
 
 		System.out.println("/addPurchase post");
+
 		//Business Logic
-		
-		Purchase purchase = new Purchase();
+		System.out.println("prodNo : " + prodNo);
 		
 		Product product = productService.getProduct(prodNo);
-		purchase.setPurchaseProd(product);
-		purchase.setBuyer((User)session.getAttribute("user"));
-		
 		model.addAttribute(product);
-		
-		purchaseService.addPurchase(purchase);
-		
 		return "forward:/purchase/addPurchaseView.jsp";
 	}
 	
 	@PostMapping("/addPurchase")
-	public String addPurchase(@ModelAttribute Purchase purchase) {
+	public String addPurchase(@ModelAttribute Product product
+			,@ModelAttribute Purchase purchase, 
+			HttpSession session,Model model) throws Exception {
 		
-		return null;
-	}
-	
-	@GetMapping("/getPurchase")
-	public String getPurchase( @RequestParam int tranNo,
-							  @RequestParam String menu,
-							  Model model)  throws Exception {
-
-		System.out.println("/getPurchase get");
+		purchase.setBuyer((User)session.getAttribute("user"));
 		
-		//Business Logic
-		Purchase purchase = purchaseService.getPurchase(tranNo);
+		purchase.setPurchaseProd(product);
+		purchaseService.addPurchase(purchase);
 		
-		//connect product
-		model.addAttribute("product", purchase);
-		model.addAttribute("menu", menu);
+		model.addAttribute(purchase);
 		
 		return "forward:/purchase/getPurchase.jsp";
 	}
+	
+
 	
 	@GetMapping("/updatePurchase")
 	public String updatePurchase( @RequestParam int tranNo, 
@@ -115,7 +102,9 @@ public class PurchaseController {
 		//connect product
 		model.addAttribute("purchase", purchase);
 		
-		return "forward:/purchase/updatePurchase.jsp";
+		System.out.println(purchase.getOrderDate());
+		
+		return "forward:/purchase/updatePurchaseView.jsp";
 	}
 	
 	
@@ -133,7 +122,7 @@ public class PurchaseController {
 		
 		System.out.println("11");
 		
-		return "redirect:/purchase/getPurchase?tranNo="+purchase.getTranNo()+"&menu=manage";
+		return "redirect:/purchase/getPurchase?tranNo="+purchase.getTranNo();
 	}
 	
 	@RequestMapping("/listPurchase")

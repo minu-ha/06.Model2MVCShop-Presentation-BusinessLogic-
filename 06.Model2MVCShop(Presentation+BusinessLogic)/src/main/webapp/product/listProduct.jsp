@@ -117,7 +117,13 @@
 			<td align="left">${ product.regDate }</td>
 			<td></td>
 			<td align="left">	
-				판매중
+				<c:if test="${ product.quantity > 0  }">
+					판매중
+				</c:if>
+				
+				<c:if test="${ product.quantity <= 0  }">
+				품절
+				</c:if>
 			</td>	
 		</tr>	
 		<tr>

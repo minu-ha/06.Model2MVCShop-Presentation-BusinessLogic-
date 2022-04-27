@@ -153,7 +153,7 @@ function fncUpdateProduct(){
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input type="text" name="quantity" value="${ product.quantity }"
-						class="ct_input_g" style="width: 100px; height: 19px" maxLength="50"/>&nbsp;¿ø
+						class="ct_input_g" style="width: 100px; height: 19px" maxLength="50"/>&nbsp;
 		</td>
 	</tr>
 	<tr>

@@ -6,13 +6,14 @@
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
+
+<script type="text/javascript" src="../javascript/calendar.js">
+</script>
+
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 
-function fncGetUserList(currentPage) {
-	$("#currentPage").val(currentPage)
-	$("form").attr("method" , "POST").attr("action" , "/user/listUser").submit();
-}
+
 
 $(function() {
 	 
@@ -32,9 +33,8 @@ $(function() {
 	
 	
 	$( "#request" ).on("click" , function() {
-console.log("ddd");
 		//json 형식으로 데이터 set
-		var params ={
+	/* 	var params ={
 					  
 					  buyer : $("#buyer").val()
 					, paymentOption : $("#paymentOption").val()
@@ -45,9 +45,12 @@ console.log("ddd");
 					, prodNo : $("#prodNo").val()
 					, divyDate : $("#divyDate").val()
 				
-					}
+					} */
+		
+		
+		$("form").attr("method" , "POST").attr("action" , "/purchase/addPurchase").submit();
 			
-			$.ajax({ 
+		/* 	$.ajax({ 
 				  		url : "/purchase/json/addPurchase"
 				  	  , method : "POST"
 				  	  , dataType : "json"
@@ -58,9 +61,25 @@ console.log("ddd");
 				  	  , data : JSON.stringify( params ) 
 					  , success : function(JSONData , status) {
 			
-						  
+						  var displayValue = "<h3>"
+								+"상품번호 : "+JSONData.prodNo+"<br/>"
+								+"상품명 : "+JSONData.userName+"<br/>"
+								+"상품상세정보 : "+JSONData.prodDetail+"<br/>"
+								+"제조일자 : "+JSONData.manudate+"<br/>"
+								+"가격 : "+JSONData.price+"<br/>"
+								+"등록일자 : "+JSONData.regDate+"<br/>"
+								+"구매자 아이디 : "+JSONData.buyer+"<br/>"
+								+"구매방법 : "+JSONData.paymentOption+"<br/>"
+								+"구매자 이름 : "+JSONData.receiverName+"<br/>"
+								+"구매자 연락처 : "+JSONData.receiverPhone+"<br/>"
+								+"배송지 주소 : "+JSONData.divyAdder+"<br/>"
+								+"요청사항 : "+JSONData.divyRequest+"<br/>"
+								+"배송희망날짜 : "+JSONData.divyDate+"<br/>"
+								+"</h3>";
+							$("h3").remove();
+							$( "#"+tranNo+"" ).html(displayValue);
 						}
-				});
+				}); */
 				////////////////////////////////////////////////////////////////////////////////////////////
 			
 	});
@@ -79,7 +98,7 @@ console.log("ddd");
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="detailForm" method="post">
+<form name="detailForm">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -174,8 +193,7 @@ console.log("ddd");
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105">
-						<input type="text" name="buyer" class="ct_input_g" 
-									style="width: 100px; height: 19px" maxLength="20">
+						${user.userId}
 					</td>
 				</tr>
 			</table>
@@ -214,7 +232,7 @@ console.log("ddd");
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105">
-						<input type="text" name="receiveerName" class="ct_input_g" 
+						<input type="text" name="receiverName" class="ct_input_g" 
 									style="width: 100px; height: 19px" maxLength="20">
 					</td>
 				</tr>
@@ -255,7 +273,7 @@ console.log("ddd");
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105">
-						<input type="text" name="divyaddr" class="ct_input_g" 
+						<input type="text" name="divyAddr" class="ct_input_g" 
 									style="width: 100px; height: 19px" maxLength="20">
 					</td>
 				</tr>
@@ -298,6 +316,8 @@ console.log("ddd");
 					<td width="105">
 						<input type="text" name="divyDate" class="ct_input_g" 
 									style="width: 100px; height: 19px" maxLength="20">
+<img src="../images/ct_icon_date.gif" width="15" height="15" 
+	onclick="show_calendar('document.detailForm.divyDate', document.detailForm.divyDate.value)"/>
 					</td>
 				</tr>
 			</table>
@@ -318,7 +338,8 @@ console.log("ddd");
 					<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 				</td>
 				<td background="/images/ct_btnbg02.gif" class="ct_btn01"  style="padding-top: 3px;">
-				<input type="button" id="request" value="구매확인"/>
+				 <input type="button" id="request" value="구매확인"/> 
+				<!-- <a href="/purchase/addPurchase">구매확인</a> -->
 				</td>
 				<td width="14" height="23">
 					<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
@@ -338,6 +359,10 @@ console.log("ddd");
 		</td>
 	</tr>
 </table>
+
+
+<input type="hidden" name="prodNo" value="${product.prodNo }"  />
+
 
 </form>
 </body>
