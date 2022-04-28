@@ -85,12 +85,43 @@ public class PurchaseController {
 		purchase.setPurchaseProd(product);
 		purchaseService.addPurchase(purchase);
 		
-		model.addAttribute(purchase);
 		
-		return "forward:/purchase/getPurchase.jsp";
+		
+		//model.addAttribute(purchase);
+		
+		return "forward:/purchase/listPurchase";
 	}
 	
 
+	@PostMapping("/listPurchase")
+	public String listPurchase(@ModelAttribute Search search
+			                  ,HttpServletRequest request
+			                  ,Model model) throws Exception {
+		
+		System.out.println("listPurchase ");
+		
+
+		if(search.getCurrentPage() ==0 ){
+			search.setCurrentPage(1);
+		}
+		search.setPageSize(pageSize);
+		
+		// Business logic 수행
+		Map<String , Object> map=purchaseService.getPurchaseList(search);
+		
+		Page resultPage = new Page( search.getCurrentPage()
+				   , ((Integer)map.get("totalCount")).intValue()
+				   , pageUnit
+				   , pageSize);
+		System.out.println(resultPage);
+		
+		// Model 과 View 연결
+		model.addAttribute("list", map.get("list"));
+		model.addAttribute("resultPage", resultPage);
+		model.addAttribute("search", search);
+		
+		return "/purchase/listPurchase.jsp";
+	}
 	
 	@GetMapping("/updatePurchase")
 	public String updatePurchase( @RequestParam int tranNo, 
@@ -125,47 +156,6 @@ public class PurchaseController {
 		return "redirect:/purchase/getPurchase?tranNo="+purchase.getTranNo();
 	}
 	
-	@RequestMapping("/listPurchase")
-	public String listPurchase(@ModelAttribute Search search,
-							   HttpServletRequest request,
-							   Model model) throws Exception{
-		
-		System.out.println("/listPurchase post");
-		
 	
-		String menu = "";	
-		if(request.getParameter("menu") != null) {
-			menu = request.getParameter("menu");
-		}
-		
-		if(search.getCurrentPage() ==0 ){
-			search.setCurrentPage(1);
-		}
-		search.setPageSize(pageSize);
-
-		
-		// Business logic 수행
-		Map<String , Object> map=purchaseService.getPurchaseList(search);
-				
-				
-		Page resultPage = new Page(   search.getCurrentPage()
-									,((Integer)map.get("totalCount")).intValue()
-									, pageUnit
-									, pageSize);
-		
-		System.out.println(resultPage);
-		
-		
-		// Model 과 View 연결
-		model.addAttribute("list", map.get("list"));
-		model.addAttribute("resultPage", resultPage);
-		model.addAttribute("search", search);
-		model.addAttribute("menu", menu);
-		
-		
-		
-		return "forward:/product/listPurchase.jsp;";
-		
-	}
 	
 }
