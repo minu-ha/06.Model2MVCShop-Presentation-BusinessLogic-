@@ -85,14 +85,16 @@
 		<td class="ct_line02"></td>
 		<td class="ct_list_b" width="150">회원명</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">이메일</td>		
+		<td class="ct_list_b" width="150">전화번호</td>
+		<td class="ct_line02"></td>
+		<td class="ct_list_b">배송현황</td>		
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>
 	</tr>
 	
 	<c:set var="i" value="0" />
-	<c:forEach var="user" items="${list}">
+	<c:forEach var="purchase" items="${list}">
 		<c:set var="i" value="${ i+1 }" />
 		<tr class="ct_list_pop">
 			<td align="center">${ i }</td>
@@ -101,11 +103,15 @@
 				<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				<a href="/getUser.do?userId=${user.userId}">${user.userId}</a></td>
                	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-			<a href="/user/getUser?userId=${user.userId}">${user.userId}</a></td>
+			<a href="/purchase/getPurchase?tranNo=${purchase.tranNo}">${purchase.tranNo}</a></td>
 			<td></td>
-			<td align="left">${user.userName}</td>
+			<td align="left">500</td>
 			<td></td>
-			<td align="left">${user.email}</td>		
+			<td align="left">${purchase.receiverName}</td>		
+				<td></td>
+			<td align="left">${purchase.receiverPhone}</td>
+				<td></td>
+			<%-- <td align="left">${purchase.trancode}</td>	 --%>
 		</tr>
 		<tr>
 		<td colspan="11" bgcolor="D6D7D6" height="1"></td>

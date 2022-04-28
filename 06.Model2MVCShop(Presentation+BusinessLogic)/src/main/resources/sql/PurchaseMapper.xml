@@ -15,7 +15,7 @@
 		<result property="dlvyAddr" column="dlvy_addr" jdbcType="VARCHAR"/>
 		<result property="dlvyRequest" column="dlvy_request" jdbcType="VARCHAR"/>
 		<result property="tranCode" column="tran_status_code" jdbcType="CHAR"/>
-		<result property="orderDate" column="order_date" jdbcType="DATE"/>
+		<result property="orderData" column="order_data" jdbcType="DATE"/>
 		<result property="dlvyDate" column="dlvy_date" jdbcType="VARCHAR"/>
 		
 		<association property="purchaseProd"  javaType="product">
@@ -79,7 +79,7 @@
   		     , demailaddr
   		     , dlvy_request
   		     , dlvy_date
-  		     , order_date
+  		     , order_data
   		     , tran_status_code
   		     , tran_no
 		 FROM  transaction
@@ -114,7 +114,7 @@
 		t.DLVY_ADDR dlvyAddr,
 		t.DLVY_REQUEST dlvyRequest,
 		t.TRAN_STATUS_CODE tranCode,
-		t.ORDER_DATE orderDate,
+		t.ORDER_DATA orderData,
 		t.DLVY_DATE dlvyDate,
 		
 		p.PROD_NO prod_no,
@@ -141,21 +141,29 @@
 		<if test="tranNo != null">AND t.TRAN_NO=#{tranNo}</if>
 	</select>
 
-	<select id="getPurchaseList" parameterType="map" resultMap="purchaseSelectMap">
+	<select id="getPurchaseList" parameterType="search" resultMap="purchaseSelectMap">
   		SELECT *
   		  FROM ( SELECT inner_table.*, ROWNUM AS row_seq
-  				   FROM ( SELECT t.tran_no
-  				               , p.prod_no
-  				               , t.order_date
-  				               , t.tran_status_code 
-							FROM transaction t, product p, users u 
-						   WHERE t.prod_no = p.prod_no 
-							 AND t.buyer_id = u.user_id 
-							 AND u.user_id = #{buyerId}
+  				   FROM ( SELECT tran_no
+  				               , buyer_id
+  				               , receiver_name
+  				               , receiver_phone
+  				               , tran_status_code 
+							FROM transaction 
 						   ORDER BY tran_no  ) inner_table
-  				  WHERE ROWNUM <![CDATA[<=]]> #{search.currentPage}*#{search.pageSize} )
-  		 WHERE row_seq BETWEEN (#{search.currentPage}-1)*#{search.pageSize}+1
-  		   AND #{search.currentPage}*#{search.pageSize}
+  				  WHERE ROWNUM <![CDATA[<=]]> #{currentPage}*#{pageSize} )
+  		 WHERE row_seq BETWEEN (#{currentPage}-1)*#{pageSize}+1
+  		   AND #{currentPage}*#{pageSize}
 	</select>
+	
+	
+	<!-- SQL : SELECT ROW Count -->	 
+	 <select  id="getTotalCount"  parameterType="search"	 resultType="int">
+	  	SELECT COUNT(*) 
+	  	  FROM (SELECT tran_no 
+			      FROM transaction
+			 	) countTable						
+	 </select>
+	
 	
 </mapper>

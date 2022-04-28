@@ -8,7 +8,7 @@ public class Purchase {
 	private String divyAddr;
 	private String divyDate;
 	private String divyRequest;
-	private Date orderDate;
+	private Date orderData;
 	private String paymentOption;
 	private Product purchaseProd;
 	private String receiverName;
@@ -43,11 +43,11 @@ public class Purchase {
 	public void setDivyRequest(String divyRequest) {
 		this.divyRequest = divyRequest;
 	}
-	public Date getOrderDate() {
-		return orderDate;
+	public Date getOrderData() {
+		return orderData;
 	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public void setOrderData(Date orderDate) {
+		this.orderData = orderDate;
 	}
 	public String getPaymentOption() {
 		return paymentOption;
@@ -88,7 +88,7 @@ public class Purchase {
 	@Override
 	public String toString() {
 		return "Purchase [buyer=" + buyer + ", divyAddr=" + divyAddr + ", divyDate=" + divyDate + ", divyRequest="
-				+ divyRequest + ", orderDate=" + orderDate + ", paymentOption=" + paymentOption + ", purchaseProd="
+				+ divyRequest + ", orderDate=" + orderData + ", paymentOption=" + paymentOption + ", purchaseProd="
 				+ purchaseProd + ", receiverName=" + receiverName + ", receiverPhone=" + receiverPhone + ", tranCode="
 				+ tranCode + ", tranNo=" + tranNo + "]";
 	}
