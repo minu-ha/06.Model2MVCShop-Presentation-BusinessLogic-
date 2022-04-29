@@ -58,6 +58,7 @@
 		                     <ul class="dropdown-menu">
 		                         <li><a href="#">판매상품등록</a></li>
 		                         <li><a href="#">판매상품관리</a></li>
+		                         <li><a href="#">구매목록관리</a></li>
 		                         <li class="divider"></li>
 		                         <li><a href="#">etc..</a></li>
 		                     </ul>
@@ -77,7 +78,7 @@
 	                           <li><a href="#">구매이력조회</a></li>
 	                         </c:if>
 	                         
-	                         <li><a href="#">최근본상품</a></li>
+	                         <li><a href="javascript:history()">최근본상품</a></li>
 	                         <li class="divider"></li>
 	                         <li><a href="#">etc..</a></li>
 	                     </ul>
@@ -87,7 +88,7 @@
 	             </ul>
 	             
 	             <ul class="nav navbar-nav navbar-right">
-	                <li><a href="#">로그아웃</a></li>
+	                <li><a href="/user/logout">로그아웃</a></li>
 	            </ul>
 		</div>
 		<!-- dropdown hover END -->	       
@@ -123,5 +124,38 @@
 	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 			$(self.location).attr("href","/user/getUser?userId=${sessionScope.user.userId}");
 		});
+		
+		
+		//=============  판매상품등록 Event  처리 =============	
+	 	$( "a:contains('판매상품등록')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			$(self.location).attr("href","/product/addProduct?menu=manage;");
+		});
+		
+		
+		//=============  판매상품관리 Event  처리 =============	
+	 	$( "a:contains('판매상품관리')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			$(self.location).attr("href","/product/listProduct?menu=manage");
+		});
+		
+	 	//=============  구매이력조회 Event  처리 =============	
+	 	$( "a:contains('구매이력조회')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			$(self.location).attr("href","/purchase/listPurchase");
+		});
+	 	
+	 	//=============  상 품 검 색 Event  처리 =============	
+	 	$( "a:contains('상 품 검 색')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			$(self.location).attr("href","/product/listProduct?menu=search");
+		});
+	 	
+	 	//=============  구매목록관리 Event  처리 =============	
+	 	$( "a:contains('구매목록관리')" ).on("click" , function() {
+	 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
+			$(self.location).attr("href","/purchase/listPurchase");
+		});
+		
 		
 	</script>  

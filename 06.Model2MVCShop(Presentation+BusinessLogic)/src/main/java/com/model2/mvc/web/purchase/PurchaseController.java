@@ -93,7 +93,7 @@ public class PurchaseController {
 	}
 	
 
-	@PostMapping("/listPurchase")
+	@RequestMapping("/listPurchase")
 	public String listPurchase(@ModelAttribute Search search
 			                  ,HttpServletRequest request
 			                  ,Model model) throws Exception {

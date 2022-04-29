@@ -9,8 +9,22 @@
 <html>
 <head>
 <title>상품 목록조회</title>
-
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
+<!-- 참조 : http://getbootstrap.com/css/   참조 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+	<!--  ///////////////////////// CSS ////////////////////////// -->
+	<style>
+       body > div.container{
+        	border: 3px solid #D6CDB7;
+            margin-top: 10px;
+        }
+    </style>
 
 <script type="text/javascript">
 <!--
@@ -22,7 +36,9 @@ function fncGetProductList(){
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
-
+<!-- ToolBar Start /////////////////////////////////////-->
+	<jsp:include page="/layout/toolbar.jsp" />
+   	<!-- ToolBar End /////////////////////////////////////-->
 <div style="width:98%; margin-left:10px;">
 
 <form name="detailForm" action="/listProduct.do?menu=manage" method="post">
