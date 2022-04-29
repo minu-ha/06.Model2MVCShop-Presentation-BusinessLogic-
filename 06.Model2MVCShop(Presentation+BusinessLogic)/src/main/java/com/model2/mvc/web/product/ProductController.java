@@ -53,11 +53,12 @@ public class ProductController {
 	
 	
 	@GetMapping("/addProduct")
-	public String addProduct() throws Exception {
+	public String addProduct(@RequestParam String menu,Model model) throws Exception {
 
 		System.out.println("/addUser get");
+		model.addAttribute("menu", menu);
 		
-		return "redirect:/product/addProductView.jsp";
+		return "/product/addProductView.jsp";
 	}
 	
 	@PostMapping("/addProduct")
@@ -76,7 +77,7 @@ public class ProductController {
 							  Model model)  throws Exception {
 
 		System.out.println("/getProduct get");
-		
+		System.out.println(prodNo);
 		//Business Logic
 		Product product = productService.getProduct(prodNo);
 		
@@ -96,6 +97,9 @@ public class ProductController {
 		Product product = productService.getProduct(prodNo);
 		//connect product
 		model.addAttribute("product", product);
+		
+		
+		System.out.println(prodNo);
 		
 		return "forward:/product/updateProduct.jsp";
 	}
@@ -135,6 +139,8 @@ public class ProductController {
 			search.setCurrentPage(1);
 		}
 		search.setPageSize(pageSize);
+		
+		System.out.println(menu);
 
 		
 		// Business logic ผ๖วเ
