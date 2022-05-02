@@ -15,22 +15,44 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
+	
+	<!-- Bootstrap Dropdown Hover CSS -->
+   <link href="/css/animate.min.css" rel="stylesheet">
+   <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+    <!-- Bootstrap Dropdown Hover JS -->
+   <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+   
+   
+   <!-- jQuery UI toolTip 사용 CSS-->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- jQuery UI toolTip 사용 JS-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
-	<style>
-       body > div.container{
-        	border: 3px solid #D6CDB7;
-            margin-top: 10px;
+<style>
+	  body {
+            padding-top : 50px;
         }
     </style>
 
 <script type="text/javascript">
 
+	
+	
+	//=============    검색 / page 두가지 경우 모두  Event  처리 =============	
+		function fncGetPageList(currentPage) {
+			$("#currentPage").val(currentPage)
+			$("form").attr("method" , "POST").attr("action" , "/purchase/listPurchase").submit();
+		}
+	
+	/* 
 	// 검색 / page 두가지 경우 모두 Form 전송을 위해 JavaScrpt 이용  
 	function fncGetPageList(currentPage) {
 		document.getElementById("currentPage").value = currentPage;
 	   	document.detailForm.submit();		
 	}
-
+ */
+ 
 </script>
 
 </head>
@@ -107,14 +129,10 @@
 			<td align="center">${ i }</td>
 			<td align="left">
 			<a href="/purchase/getPurchase?tranNo=${purchase.tranNo}">${purchase.buyer.userId}</a></td>
-			<td align="left">500</td>
-			<td align="left">${purchase.receiverName}</td>		
-			<td align="left">${purchase.receiverPhone}</td>
+			<td align="left">${purchase.receiverName}</td>
+			<td align="left">${purchase.receiverPhone}</td>		
 	
 			<%-- <td align="left">${purchase.trancode}</td>	 --%>
-		</tr>
-		<tr>
-		<td colspan="11" bgcolor="D6D7D6" height="1"></td>
 		</tr>
 	</c:forEach>
         
