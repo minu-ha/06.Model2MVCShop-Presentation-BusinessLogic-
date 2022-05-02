@@ -30,7 +30,7 @@
 	<style>
         body {
             padding-top : 70px;
-            background-color: black;
+            background-color: white;
         }
    	</style>
    	

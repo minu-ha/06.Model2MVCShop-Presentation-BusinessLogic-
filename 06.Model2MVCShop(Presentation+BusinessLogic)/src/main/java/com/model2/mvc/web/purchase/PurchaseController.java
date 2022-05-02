@@ -75,6 +75,9 @@ public class PurchaseController {
 		return "forward:/purchase/addPurchaseView.jsp";
 	}
 	
+	
+	
+	
 	@PostMapping("/addPurchase")
 	public String addPurchase(@ModelAttribute Product product
 			,@ModelAttribute Purchase purchase, 
@@ -91,6 +94,26 @@ public class PurchaseController {
 		
 		return "forward:/purchase/listPurchase";
 	}
+
+	
+	
+	
+	@GetMapping("/getPurchase")
+	public String getPurchase( @RequestParam int tranNo, Model model) throws Exception {
+		
+		System.out.println("/getPurchase get");
+		
+		Purchase purchase = purchaseService.getPurchase(tranNo);
+		
+		model.addAttribute(purchase);
+		
+		
+		System.out.println("sdfsdfmkewmfkwemfk2435243");
+		
+		return "forward:/purchase/getPurchase.jsp";
+	}
+	
+	
 	
 
 	@RequestMapping("/listPurchase")
@@ -141,6 +164,7 @@ public class PurchaseController {
 	
 	@PostMapping("/updatePurchase")
 	public String updatePurchase(  @ModelAttribute Purchase purchase,
+			HttpSession session,
 								  Model model ) throws Exception{
 
 		System.out.println("/updatePurchase post");
@@ -149,11 +173,14 @@ public class PurchaseController {
 
 		System.out.println("9");
 		
-		
+		purchase = purchaseService.getPurchase(purchase.getTranNo());
+		purchase.setBuyer((User)session.getAttribute("user"));
 		
 		System.out.println("11");
 		
-		return "redirect:/purchase/getPurchase?tranNo="+purchase.getTranNo();
+		model.addAttribute(purchase);
+		
+		return "/purchase/getPurchase.jsp";
 	}
 	
 	

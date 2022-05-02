@@ -182,7 +182,7 @@ $(function() {
 		 <div class="form-group">
 		    <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">구매자 아이디</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="userId" name="userId" value="${user.userId}" >
+		      <input type="text" class="form-control" id="userId" name="userId" value="${user.userId}"  readonly>
 		    </div>
 		  </div>
 		  
@@ -201,16 +201,16 @@ $(function() {
 		  </div>
 		  
 		  	 <div class="form-group">
-		    <label for="fileName" class="col-sm-offset-1 col-sm-3 control-label">구매자 연락처</label>
+		    <label for="receiverPhone" class="col-sm-offset-1 col-sm-3 control-label">구매자 연락처</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="regDate" name="regDate" value="${product.regDate}" >
+		      <input type="text" class="form-control" id="receiverPhone" name="receiverPhone" value="${purchase.receiverPhone}" >
 		    </div>
 		  </div>
 		  
 		  	 <div class="form-group">
-		    <label for="divyAddr" class="col-sm-offset-1 col-sm-3 control-label">배송지 주소</label>
+		    <label for="dlvyAddr" class="col-sm-offset-1 col-sm-3 control-label">배송지 주소</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="divyAddr" name="divyAddr"  >
+		      <input type="text" class="form-control" id="dlvyAddr" name="dlvyAddr"  >
 		    </div>
 		  </div>
 		  

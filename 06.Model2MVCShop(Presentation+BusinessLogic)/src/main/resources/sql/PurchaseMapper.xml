@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -12,11 +12,11 @@
 		<result property="paymentOption" column="payment_option" jdbcType="CHAR"/>
 		<result property="receiverName" column="receiver_name" jdbcType="VARCHAR"/>
 		<result property="receiverPhone" column="receiver_phone" jdbcType="VARCHAR"/>
-		<result property="dlvyAddr" column="dlvy_addr" jdbcType="VARCHAR"/>
-		<result property="dlvyRequest" column="dlvy_request" jdbcType="VARCHAR"/>
+		<result property="dlvyAddr" column="demailaddr" jdbcType="VARCHAR"/>
+		<result property="divyRequest" column="divy_request" jdbcType="VARCHAR"/>
 		<result property="tranCode" column="tran_status_code" jdbcType="CHAR"/>
 		<result property="orderData" column="order_data" jdbcType="DATE"/>
-		<result property="dlvyDate" column="dlvy_date" jdbcType="VARCHAR"/>
+		<result property="divyDate" column="divy_date" jdbcType="VARCHAR"/>
 		
 		<association property="purchaseProd"  javaType="product">
 			<id property="prodNo" column="prod_no" jdbcType="NUMERIC"/>
@@ -51,10 +51,10 @@
 		                 , receiver_name
 		                 , receiver_phone
 		                 , demailaddr
-		                 , dlvy_request
+		                 , divy_request
 		                 , tran_status_code
 		                 , order_data
-		                 , dlvy_date)
+		                 , divy_date)
 		VALUES (
 					seq_transaction_tran_no.NEXTVAL,
 					#{purchaseProd.prodNo:INTEGER},
@@ -62,7 +62,7 @@
 					#{paymentOption:CHAR},
 					#{receiverName:VARCHAR},
 					#{receiverPhone:VARCHAR},
-					#{divyAddr:VARCHAR},
+					#{dlvyAddr:VARCHAR},
 					#{divyRequest:VARCHAR},
 					#{tranCode:CHAR},
 					SYSDATE,
@@ -77,8 +77,8 @@
   		     , receiver_name
   		     , receiver_phone
   		     , demailaddr
-  		     , dlvy_request
-  		     , dlvy_date
+  		     , divy_request
+  		     , divy_date
   		     , order_data
   		     , tran_status_code
   		     , tran_no
@@ -88,12 +88,13 @@
   	
   	
   		 <!-- SQL : UPDATE -->
-	 <update	id="updateProduct"	parameterType="product" >
-	   	UPDATE purchase
+	 <update	id="updatePurchase"	parameterType="purchase" >
+	   	UPDATE transaction
 	   	<set>
 	   		payment_option      = #{paymentOption} ,
 			receiver_name       = #{receiverName},
 			receiver_phone   	= #{receiverPhone} ,
+			demailaddr          = #{dlvyAddr},
 			divy_request		= #{divyRequest},
 			divy_date			= #{divyDate}
 	   	</set>
@@ -111,11 +112,11 @@
 		t.PAYMENT_OPTION paymentOption,
 		t.RECEIVER_NAME receiverName,
 		t.RECEIVER_PHONE receiverPhone,
-		t.DLVY_ADDR dlvyAddr,
-		t.DLVY_REQUEST dlvyRequest,
+		t.divy_ADDR dlvyAddr,
+		t.divy_REQUEST divyRequest,
 		t.TRAN_STATUS_CODE tranCode,
 		t.ORDER_DATA orderData,
-		t.DLVY_DATE dlvyDate,
+		t.divy_DATE divyDate,
 		
 		p.PROD_NO prod_no,
 		p.PROD_NAME prod_name,

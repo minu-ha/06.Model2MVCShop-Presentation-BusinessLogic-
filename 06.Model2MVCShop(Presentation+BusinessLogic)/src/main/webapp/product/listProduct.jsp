@@ -202,19 +202,8 @@
  	<!--  拳搁备己 div End /////////////////////////////////////-->
 
 
-
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
-	<tr>
-		<td align="center">
-			
 			<jsp:include page="../common/pageNavigator_new.jsp"/>
-    	</td>
-	</tr>
-</table>
 <!--  其捞瘤 Navigator 场 -->
 
-</form>
-  </div>
-</div>
 </body>
 </html>

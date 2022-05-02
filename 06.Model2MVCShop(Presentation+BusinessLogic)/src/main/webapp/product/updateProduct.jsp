@@ -99,14 +99,14 @@ $(function() {
 		  <div class="form-group">
 		    <label for="prodDetail" class="col-sm-offset-1 col-sm-3 control-label">상품상세정보</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="prodDetail" name="prodDetail" value="${prodcut.prodDetail}" placeholder="상품상세정보">
+		      <input type="text" class="form-control" id="prodDetail" name="prodDetail" value="${product.prodDetail}" placeholder="상품상세정보">
 		    </div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <label for="manuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="manuDate" name="manuDate" value="${prodcut.manuDate}" placeholder="제조일자">
+		      <input type="text" class="form-control" id="manuDate" name="manuDate" value="${product.manuDate}" placeholder="제조일자">
 		    </div>
 		  </div>
 		  
