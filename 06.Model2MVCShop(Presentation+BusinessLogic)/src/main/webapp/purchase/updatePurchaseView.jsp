@@ -92,10 +92,13 @@ $(function() {
 		    </div>
 		  </div>
 		
-		  <div class="form-group">
+		  	 <div class="form-group">
 		    <label for="paymentOption" class="col-sm-offset-1 col-sm-3 control-label">구매방법</label>
-		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="paymentOption" name="paymentOption" value="${purchase.paymentOption}" placeholder="상품상세정보">
+		    <div class="col-sm-4">	
+				 <input type="radio" id="paymentOption" name="paymentOption" value="현금결제">
+ 					 <label for="male">현금결제</label>
+  				<input type="radio" id="paymentOption" name="paymentOption" value="카드결제">
+ 					 <label for="female">카드결제</label>
 		    </div>
 		  </div>
 		  
@@ -109,14 +112,14 @@ $(function() {
 		  <div class="form-group">
 		    <label for="receiverPhone" class="col-sm-offset-1 col-sm-3 control-label">구매자 연락처</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="receiverPhone" name="receiverPhone" value="${purchase.receiverPhone}" placeholder="가격">
+		      <input type="text" class="form-control" id="receiverPhone" name="receiverPhone" value="${purchase.receiverPhone}" placeholder="구매자 연락처">
 		    </div>
 		  </div>
 		  
 		 <div class="form-group">
 		    <label for="dlvyAddr" class="col-sm-offset-1 col-sm-3 control-label">배송지 주소</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="dlvyAddr" name="dlvyAddr" value="${purchaset.dlvyAddr}" placeholder="가격">
+		      <input type="text" class="form-control" id="dlvyAddr" name="dlvyAddr" value="${purchase.dlvyAddr}" placeholder="배송지 주소">
 		    </div>
 		  </div>
 		  
@@ -125,15 +128,14 @@ $(function() {
 		  <div class="form-group">
 		    <label for="divyRequest" class="col-sm-offset-1 col-sm-3 control-label">요청사항</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="divyRequest" name="divyRequest" value="${purchase.divyRequest}" placeholder="가격">
+		      <input type="text" class="form-control" id="divyRequest" name="divyRequest" value="${purchase.divyRequest}" placeholder="요청사항">
 		    </div>
 		  </div>
 		  
-		  
-		  	  <div class="form-group">
+		  		   <div class="form-group">
 		    <label for="divyDate" class="col-sm-offset-1 col-sm-3 control-label">배송희망날짜</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="divyDate" name="divyDate" value="${purchase.divyDate}" placeholder="가격">
+ 			 <input type="date" name="divyDate"  class="form-control" value="${purchase.divyDate}">
 		    </div>
 		  </div>
 		  

@@ -131,6 +131,9 @@
 			<a href="/purchase/getPurchase?tranNo=${purchase.tranNo}">${purchase.buyer.userId}</a></td>
 			<td align="left">${purchase.receiverName}</td>
 			<td align="left">${purchase.receiverPhone}</td>		
+			<td align="left">${purchase.tranCode}</td>		
+			
+				
 	
 			<%-- <td align="left">${purchase.trancode}</td>	 --%>
 		</tr>

@@ -13,7 +13,7 @@ public class Product {
 	private int prodNo;
 	private Date regDate;
 	private int quantity;
-	private String proTranCode;
+	private String prodTranCode;
 	
 	public int getQuantity() {
 		return quantity;
@@ -26,12 +26,14 @@ public class Product {
 	public Product(){
 	}
 	
-	public String getProTranCode() {
-		return proTranCode;
+	public String getProdTranCode() {
+		return prodTranCode;
 	}
-	public void setProTranCode(String proTranCode) {
-		this.proTranCode = proTranCode;
+
+	public void setProdTranCode(String prodTranCode) {
+		this.prodTranCode = prodTranCode;
 	}
+
 	public String getFileName() {
 		return fileName;
 	}
