@@ -14,7 +14,7 @@
 		<result property="receiverPhone" column="receiver_phone" jdbcType="VARCHAR"/>
 		<result property="dlvyAddr" column="demailaddr" jdbcType="VARCHAR"/>
 		<result property="divyRequest" column="divy_request" jdbcType="VARCHAR"/>
-		<result property="tranCode" column="tran_status_code" jdbcType="CHAR"/>
+		<result property="tranCode" column="tran_status_code" jdbcType="VARCHAR"/>
 		<result property="orderData" column="order_data" jdbcType="DATE"/>
 		<result property="divyDate" column="divy_date" jdbcType="VARCHAR"/>
 		

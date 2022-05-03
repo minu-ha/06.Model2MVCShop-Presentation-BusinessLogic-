@@ -1,21 +1,26 @@
 package com.model2.mvc.web.product;
 
+import java.io.File;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.model2.mvc.common.Page;
@@ -35,6 +40,10 @@ public class ProductController {
 	@Autowired
 	@Qualifier("productServiceImpl")
 	private ProductService productService;
+
+	//properties에 있는 uploadPath값 가져오기
+    @Resource(name="uploadPath")
+    String uploadPath;
 
 	
 	public ProductController() {
@@ -61,14 +70,24 @@ public class ProductController {
 		return "/product/addProductView.jsp";
 	}
 	
+	
+	
 	@PostMapping("/addProduct")
-	public String addProduct( @ModelAttribute Product product ) throws Exception {
+	public String addProduct( MultipartFile file,@ModelAttribute Product product,Model model ) throws Exception {
 
 		System.out.println("/addProduct post");
-		//Business Logic
-		productService.addProduct(product);
 		
-		return "forward:/product/getProduct.jsp";
+		   
+		if(!file.getOriginalFilename().isEmpty()) {
+			FileCopyUtils.copy(file.getBytes(), new File(uploadPath , file.getOriginalFilename()));
+			
+			product.setFileName(file.getOriginalFilename());
+			productService.addProduct(product);
+//			model.addAttribute("msg", "File uploaded successfully.");
+		}
+
+		
+		return "forward:/product/listProduct";
 	}
 	
 	@GetMapping("/getProduct")

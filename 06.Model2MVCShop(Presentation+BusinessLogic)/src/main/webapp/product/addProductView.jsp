@@ -44,7 +44,7 @@ $(function() {
 			
 			
 			//$("input:hidden[name='prodNo']").val( value );
-			$("form").attr("method" , "POST").attr("action" , "/product/listProduct").submit();	
+			$("form").attr("method" , "POST").attr("action" , "/product/addProduct").attr("enctype","multipart/form-data").submit();	
 			//self.location = "/product/updateProduct"
 			
 		});
@@ -104,21 +104,21 @@ $(function() {
 		  <div class="form-group">
 		    <label for="manuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="manuDate" name="manuDate" >
+		      <input type="date" class="form-control" id="manuDate" name="manuDate" >
 		    </div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <label for="price" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="price" name="price" " >
+		      <input type="text" class="form-control" id="price" name="price"  >
 		    </div>
 		  </div>
 		  
-		 <div class="form-group">
-		    <label for="fileName" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
+		 <div class="form-group" contentEditable='true'>
+		    <label for="file" class="col-sm-offset-1 col-sm-3 control-label">상품이미지</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="fileName" name="fileName" >
+		      <input type="file" class="form-control" id="file" name="file"  >
 		    </div>
 		  </div>
 		  

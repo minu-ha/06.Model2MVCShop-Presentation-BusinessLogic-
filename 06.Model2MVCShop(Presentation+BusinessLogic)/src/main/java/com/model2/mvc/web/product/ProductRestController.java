@@ -1,5 +1,8 @@
 package com.model2.mvc.web.product;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +30,21 @@ public class ProductRestController {
 	}
 	
 	
-	@GetMapping("/getProduct/{prodNo}")
-	public Product getProduct(@PathVariable int prodNo) throws Exception{
+	@GetMapping("/getProduct/{prodNo}/{menu}")
+	public Map getProduct(@PathVariable int prodNo,
+			@PathVariable String menu) throws Exception{
 		
 		System.out.println("json getproduct start");
 		
 		
-		return productService.getProduct(prodNo);
+		Map map = new HashMap();
+		
+		Product product = productService.getProduct(prodNo);
+		
+		map.put("product", product);
+		map.put("menu", menu);
+		
+		
+		return map;
 	}
 }

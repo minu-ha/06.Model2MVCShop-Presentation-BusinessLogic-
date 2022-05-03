@@ -49,13 +49,13 @@
 	 $(function() {
 		 
 		//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-		$(  "td:nth-child(5) > i" ).on("click" , function() {
+		$(  "td:nth-child(6) > i" ).on("click" , function() {
 
 				var prodNo = $(this).next().val();
 			
 				$.ajax( 
 						{
-							url : "/product/json/getProdut/"+prodNo ,
+							url : "/product/json/getProduct/"+prodNo+"/${param.menu}" ,
 							method : "GET" ,
 							dataType : "json" ,
 							headers : {
@@ -65,11 +65,11 @@
 							success : function(JSONData , status) {
 
 								var displayValue = "<h6>"
-															+"상품번호 : "+JSONData.prodNo+"<br/>"
-															+"상품상세정보 : "+JSONData.prodDetail+"<br/>"
-															+"제조일자 : "+JSONData.manuDate+"<br/>"
-															+"가격 : "+JSONData.price+"<br/>"
-															+"등록일자 : "+JSONData.regDate+"<br/>"
+															+"상품번호 : "+JSONData.product.prodNo+"<br/>"
+															+"상품상세정보 : "+JSONData.product.prodDetail+"<br/>"
+															+"제조일자 : "+JSONData.product.manuDate+"<br/>"
+															+"가격 : "+JSONData.product.price+"<br/>"
+															+"등록일자 : "+JSONData.product.regDate+"<br/>"
 															+"</h6>";
 								$("h6").remove();
 								$( "#"+prodNo+"" ).html(displayValue);
@@ -123,7 +123,7 @@
 		    <div class="col-md-6 text-right">
 			    <form class="form-inline" name="detailForm">
 			    
-			    <input type="hidden" name="menu" value ="${menu }"/>
+			    <input type="hidden" name="menu" value ="${param.menu }"/>
 				  <div class="form-group">
 				    <select class="form-control" name="searchCondition" >
 				<option value="0" ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>상품번호</option>
@@ -142,7 +142,8 @@
 				  
 				  <!-- PageNavigation 선택 페이지 값을 보내는 부분 -->
 				  <input type="hidden" id="currentPage" name="currentPage" value=""/>
-				  
+			
+			 
 				</form>
 	    	</div>
 	    	
@@ -183,13 +184,14 @@
 			 <td align="left">${ product.price }</td>
 			<td align="left">${ product.regDate }</td>
 			<td align="left">	
+				<c:if test="${product.prodTranCode == '판매완료' }">판매완료</c:if>
 				<c:if test="${ product.quantity > 0  }">판매중</c:if>
 				<c:if test="${ product.quantity <= 0  }">품절</c:if>
 			</td>	
 			 <td align="left">
 			  	<i class="glyphicon glyphicon-ok" id= "${product.prodNo}"></i>
-			  	<input type="hidden" value="${product.prodNo}">
-			  </td>
+			    <input type="hidden" value="${product.prodNo}">
+			  	 </td>
 			</tr>
           </c:forEach>
         
@@ -200,7 +202,6 @@
 	  
  	</div>
  	<!--  화면구성 div End /////////////////////////////////////-->
-
 
 			<jsp:include page="../common/pageNavigator_new.jsp"/>
 <!--  페이지 Navigator 끝 -->

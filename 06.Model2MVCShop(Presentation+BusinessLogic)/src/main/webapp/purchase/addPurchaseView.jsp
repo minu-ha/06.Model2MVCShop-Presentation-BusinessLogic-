@@ -134,21 +134,21 @@ $(function() {
 		  <div class="form-group">
 		    <label for="prodNo" class="col-sm-offset-1 col-sm-3 control-label">상품번호</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="prodNo" name="prodNo" value="${product.prodNo}"  >
+		      <input type="text" class="form-control" id="prodNo" name="prodNo" value="${product.prodNo}"  readonly>
 		    </div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <label for="prodName" class="col-sm-offset-1 col-sm-3 control-label">상품명</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="prodName" name="prodName" value="${product.prodName}">
+		      <input type="text" class="form-control" id="prodName" name="prodName" value="${product.prodName}" readonly>
 		    </div>
 		  </div>
 		
 		  <div class="form-group">
 		    <label for="prodDetail" class="col-sm-offset-1 col-sm-3 control-label">상품상세정보</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="prodDetail" name="prodDetail" value="${product.prodDetail}">
+		      <input type="text" class="form-control" id="prodDetail" name="prodDetail" value="${product.prodDetail}" readonly>
 		    </div>
 		  </div>
 		 
@@ -156,14 +156,14 @@ $(function() {
 		  <div class="form-group">
 		    <label for="manuDate" class="col-sm-offset-1 col-sm-3 control-label">제조일자</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="manuDate" name="manuDate" value="${product.manuDate}" >
+		      <input type="text" class="form-control" id="manuDate" name="manuDate" value="${product.manuDate}" readonly>
 		    </div>
 		  </div>
 		  
 		  <div class="form-group">
 		    <label for="price" class="col-sm-offset-1 col-sm-3 control-label">가격</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="price" name="price" value="${product.price}" >
+		      <input type="text" class="form-control" id="price" name="price" value="${product.price}" readonly>
 		    </div>
 		  </div>
 	
@@ -173,7 +173,7 @@ $(function() {
 		 	 <div class="form-group">
 		    <label for="fileName" class="col-sm-offset-1 col-sm-3 control-label">등록일자</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="regDate" name="regDate" value="${product.regDate}" >
+		      <input type="text" class="form-control" id="regDate" name="regDate" value="${product.regDate}" readonly>
 		    </div>
 		  </div>
 		  
@@ -188,8 +188,11 @@ $(function() {
 		  
 		  	 <div class="form-group">
 		    <label for="paymentOption" class="col-sm-offset-1 col-sm-3 control-label">구매방법</label>
-		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="paymentOption" name="paymentOption"  >
+		    <div class="col-sm-4">	
+				 <input type="radio" id="paymentOption" name="paymentOption" value="현금결제">
+ 					 <label for="male">현금결제</label>
+  				<input type="radio" id="paymentOption" name="paymentOption" value="카드결제">
+ 					 <label for="female">카드결제</label>
 		    </div>
 		  </div>
 		  
@@ -226,11 +229,11 @@ $(function() {
 		   <div class="form-group">
 		    <label for="divyDate" class="col-sm-offset-1 col-sm-3 control-label">배송희망날짜</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="divyDate" name="divyDate"  >
-		      <img src="../images/ct_icon_date.gif" width="15" height="15" 
-	onclick="show_calendar('document.detailForm.divyDate', document.detailForm.divyDate.value)"/>
+ 			 <input type="date" name="divyDate">
 		    </div>
 		  </div>
+		  
+		  
 		  
 		  
 		  
@@ -243,6 +246,7 @@ $(function() {
 		  
 		  
 		  
+<input type="hidden" name="tranCode" value="판매완료"  />
 <input type="hidden" name="prodNo" value="${product.prodNo }"  />
 		</form>
 		<!-- form Start /////////////////////////////////////-->
