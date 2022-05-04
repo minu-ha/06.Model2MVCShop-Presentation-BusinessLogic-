@@ -84,9 +84,9 @@ $(function() {
 	
 		
 		  <div class="form-group">
-		    <label for="receiverName" class="col-sm-offset-1 col-sm-3 control-label">구매자이름</label>
+		    <label for="receiverName" class="col-sm-offset-1 col-sm-3 control-label">구매자아이디</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="receiverName" name="receiverName" value="${purchase.receiverName }" placeholder="중복확인하세요"  readonly>
+		      <input type="text" class="form-control" id="receiverName" name="receiverName" value="${purchase.buyer.userId }" placeholder="중복확인하세요"  readonly>
 		       <span id="helpBlock" class="help-block">
 		      </span>
 		    </div>
