@@ -72,7 +72,7 @@
 		
         <div class="container">
         
-        	<a class="navbar-brand" href="#">�ڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡ�</a>
+        	<a class="navbar-brand" href="#">��</a>
 			
 			<!-- toolBar Button Start //////////////////////// -->
 			<div class="navbar-header">

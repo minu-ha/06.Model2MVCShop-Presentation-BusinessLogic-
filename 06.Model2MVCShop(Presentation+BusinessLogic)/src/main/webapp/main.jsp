@@ -61,7 +61,7 @@
    								 <div class="thumbnail">
      								 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTApbLhkNPmLfk9iwMoBo3qzg_GHuc-8TR2WvDxu5UTuw&s" alt="...">
       									<div class="caption">
-       											 <h3>Thumbnail label</h3>
+       											 <h3>ÇØÀû·ê·¿</h3>
        												 <p>...</p>
        				 <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
       											</div>
