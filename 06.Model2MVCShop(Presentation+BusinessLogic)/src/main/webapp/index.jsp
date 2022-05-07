@@ -72,12 +72,12 @@
 		
         <div class="container">
         
-        	<a class="navbar-brand" href="#">�ڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡڡ�</a>
+        	<a class="navbar-brand" href="#">�ڡڡڡڡڡڡڡڡڡ�</a>
 			
 			<!-- toolBar Button Start //////////////////////// -->
 			<div class="navbar-header">
 			    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#target">
-			        <span class="sr-only">Toggle navigation</span>
+			        <span class="sr-only">�ڡڡڡڡڡڡڡڡڡ�</span>
 			   
 			    </button>
 			</div>

@@ -10,7 +10,7 @@
 	
 	<div class="container">
 	       
-		<a class="navbar-brand" href="/index.jsp">Camel Filters</a>
+		<a class="navbar-brand" href="/index.jsp"></a>
 		
 		<!-- toolBar Button Start //////////////////////// -->
 		<div class="navbar-header">
@@ -43,8 +43,6 @@
 	                         	<li><a href="#">회원정보조회</a></li>
 	                         </c:if>
 	                         
-	                         <li class="divider"></li>
-	                         <li><a href="#">etc...</a></li>
 	                     </ul>
 	                 </li>
 	                 
@@ -52,15 +50,13 @@
 	               <c:if test="${sessionScope.user.role == 'admin'}">
 		              <li class="dropdown">
 		                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-		                         <span >판매상품관리</span>
+		                         <span >상품관리</span>
 		                         <span class="caret"></span>
 		                     </a>
 		                     <ul class="dropdown-menu">
 		                         <li><a href="#">판매상품등록</a></li>
 		                         <li><a href="#">판매상품관리</a></li>
 		                         <li><a href="#">구매목록관리</a></li>
-		                         <li class="divider"></li>
-		                         <li><a href="#">etc..</a></li>
 		                     </ul>
 		                </li>
 	                 </c:if>
@@ -78,13 +74,9 @@
 	                           <li><a href="#">구매이력조회</a></li>
 	                         </c:if>
 	                         
-	                         <li><a href="javascript:history()">최근본상품</a></li>
-	                         <li class="divider"></li>
-	                         <li><a href="#">etc..</a></li>
 	                     </ul>
 	                 </li>
 	                 
-	                 <li><a href="#">etc...</a></li>
 	             </ul>
 	             
 	             <ul class="nav navbar-nav navbar-right">
